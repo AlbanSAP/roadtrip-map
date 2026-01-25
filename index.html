@@ -257,15 +257,16 @@
             right: 15px;
             z-index: 1000;
             display: flex;
-            gap: 5px;
+            align-items: center;
+            gap: 4px;
             background: rgba(255,255,255,0.95);
-            padding: 6px;
-            border-radius: 12px;
+            padding: 5px;
+            border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
-        .text-size-btn {
-            width: 36px;
-            height: 36px;
+        .text-size-btn, .control-btn {
+            width: 32px;
+            height: 32px;
             border: none;
             border-radius: 8px;
             background: #f5f5f5;
@@ -278,7 +279,14 @@
             color: #333;
             -webkit-tap-highlight-color: transparent;
         }
-        .text-size-btn:active { background: #e0e0e0; }
+        .text-size-btn:active, .control-btn:active { background: #e0e0e0; }
+        .control-btn.active { background: #1565c0; color: white; }
+        .control-divider {
+            width: 1px;
+            height: 20px;
+            background: #ddd;
+            margin: 0 2px;
+        }
         .text-size-label {
             display: flex;
             align-items: center;
@@ -307,36 +315,23 @@
         }
         .btn-recenter:active { background: #f0f0f0; }
 
-        /* Bouton plein ecran */
+        /* Bouton plein ecran (dans la barre de controles) */
         .btn-fullscreen {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 1000;
-            background: white;
+            background: #f5f5f5;
             border: none;
-            border-radius: 12px;
-            width: 44px;
-            height: 44px;
-            font-size: 1.3em;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            font-size: 1.1em;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             -webkit-tap-highlight-color: transparent;
-            transition: all 0.3s;
         }
-        .btn-fullscreen:active { background: #f0f0f0; }
+        .btn-fullscreen:active { background: #e0e0e0; }
         .btn-fullscreen.active {
             background: #1565c0;
-            color: white;
-        }
-
-        /* Mode plein ecran - masquer les elements */
-        body.fullscreen-mode .btn-fullscreen {
-            opacity: 0.9;
-            background: rgba(0,0,0,0.6);
             color: white;
         }
 
@@ -1020,13 +1015,20 @@
             .stat:nth-child(n+3) { display: none; }
 
             /* === BOUTON PLEIN ECRAN === */
-            .btn-fullscreen {
+            /* Barre de controles mobile */
+            .text-size-controls {
                 top: 8px;
                 right: 8px;
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
+                padding: 3px;
+                gap: 3px;
             }
+            .text-size-btn, .btn-fullscreen {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            .text-size-label { font-size: 9px; padding: 0 4px; }
+            .control-divider { height: 16px; }
 
             /* === LEGENDE COMPACTE === */
             .legend {
@@ -1226,7 +1228,20 @@
             .stat { font-size: 9px; }
             .stat:nth-child(n+2) { display: none; }
 
-            .btn-fullscreen { top: 5px; right: 5px; width: 28px; height: 28px; font-size: 12px; }
+            /* Barre controles paysage */
+            .text-size-controls {
+                top: 5px;
+                right: 5px;
+                padding: 2px;
+                gap: 2px;
+            }
+            .text-size-btn, .btn-fullscreen {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
+            .text-size-label { font-size: 8px; padding: 0 3px; }
+            .control-divider { height: 14px; }
 
             .legend { bottom: 55px; max-width: 110px; font-size: 9px; }
             .legend-header { padding: 4px 8px; font-size: 10px; }
@@ -1402,16 +1417,13 @@
 
     <div id="map"></div>
 
-    <!-- Bouton plein ecran -->
-    <button class="btn-fullscreen" id="btn-fullscreen" onclick="toggleFullscreen()" title="Mode plein ecran">
-        ⛶
-    </button>
-
-    <!-- Controles taille texte -->
-    <div class="text-size-controls">
-        <button class="text-size-btn" onclick="changeTextSize(-1)">A-</button>
+    <!-- Barre de controles (texte + plein écran) -->
+    <div class="text-size-controls" id="controls-bar">
+        <button class="text-size-btn" onclick="changeTextSize(-1)" title="Reduire texte">A-</button>
         <span class="text-size-label" id="text-size-label">100%</span>
-        <button class="text-size-btn" onclick="changeTextSize(1)">A+</button>
+        <button class="text-size-btn" onclick="changeTextSize(1)" title="Agrandir texte">A+</button>
+        <div class="control-divider"></div>
+        <button class="btn-fullscreen" id="btn-fullscreen" onclick="toggleFullscreen()" title="Mode plein ecran">⛶</button>
     </div>
 
     <div class="legend" id="legend">
