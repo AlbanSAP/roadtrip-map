@@ -2376,10 +2376,13 @@
 
         // ============ HEADER AUTO-COLLAPSE ============
         let headerCollapseTimer = null;
+        let headerTouching = false;
         const header = document.getElementById('header');
 
         function collapseHeader() {
-            header.classList.add('collapsed');
+            if (!headerTouching) {
+                header.classList.add('collapsed');
+            }
         }
 
         function expandHeader() {
@@ -2402,6 +2405,18 @@
                 zoomToFullRoute();
             }
         }
+
+        // Quand on touche le header, on bloque le repli
+        header.addEventListener('touchstart', function() {
+            headerTouching = true;
+            if (headerCollapseTimer) clearTimeout(headerCollapseTimer);
+        });
+
+        // Quand on relâche, on relance le timer
+        header.addEventListener('touchend', function() {
+            headerTouching = false;
+            resetHeaderTimer();
+        });
 
         // Démarrer le timer au chargement
         resetHeaderTimer();
