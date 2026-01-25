@@ -30,9 +30,10 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s ease;
             animation: headerSlideIn 0.6s ease-out;
             border: 1px solid rgba(255,255,255,0.6);
+            overflow: hidden;
         }
         .header:hover {
             transform: translateX(-50%) scale(1.02);
@@ -40,6 +41,32 @@
         }
         .header:active {
             transform: translateX(-50%) scale(0.98);
+        }
+
+        /* Mini header (état replié) */
+        .header-mini {
+            display: none;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .header-full {
+            transition: all 0.3s ease;
+        }
+
+        /* État replié */
+        .header.collapsed {
+            padding: 8px 16px;
+            border-radius: 25px;
+        }
+        .header.collapsed .header-full {
+            display: none;
+        }
+        .header.collapsed .header-mini {
+            display: block;
+        }
+        .header.collapsed:hover {
+            transform: translateX(-50%) scale(1.05);
         }
         @keyframes headerSlideIn {
             from { transform: translateX(-50%) translateY(-30px); opacity: 0; }
@@ -1352,22 +1379,25 @@
     </style>
 </head>
 <body>
-    <div class="header" onclick="zoomToFullRoute()" title="Cliquez pour voir l'itineraire complet">
-        <div class="header-title">
-            <span class="rv-icon">🚐</span>
-            <h1>Notre Aventure en Famille</h1>
-            <span>🇺🇸</span>
+    <div class="header" id="header" onclick="handleHeaderClick(event)" title="Cliquez pour voir l'itineraire complet">
+        <div class="header-mini">🚐 Houston → New York</div>
+        <div class="header-full">
+            <div class="header-title">
+                <span class="rv-icon">🚐</span>
+                <h1>Notre Aventure en Famille</h1>
+                <span>🇺🇸</span>
+            </div>
+            <p>Houston → New York | 9 - 26 Oct 2026</p>
+            <div class="countdown" id="countdown"></div>
+            <div class="stats">
+                <div>📍 <span>3 234</span> km</div>
+                <div>⏱️ <span>~32h</span> route</div>
+                <div>📅 <span>18</span> jours</div>
+                <div>🏛️ <span>8</span> états</div>
+                <div>🎯 <span>10</span> étapes</div>
+            </div>
+            <div class="click-hint">👆 Cliquez pour voir tout l'itinéraire</div>
         </div>
-        <p>Houston → New York | 9 - 26 Oct 2026</p>
-        <div class="countdown" id="countdown"></div>
-        <div class="stats">
-            <div>📍 <span>3 234</span> km</div>
-            <div>⏱️ <span>~32h</span> route</div>
-            <div>📅 <span>18</span> jours</div>
-            <div>🏛️ <span>8</span> états</div>
-            <div>🎯 <span>10</span> étapes</div>
-        </div>
-        <div class="click-hint">👆 Cliquez pour voir tout l'itinéraire</div>
     </div>
 
     <div id="map"></div>
@@ -2343,6 +2373,38 @@
             document.getElementById('btn-fullscreen').textContent = isFullscreen ? '✕' : '⛶';
             setTimeout(() => map.invalidateSize(), 300);
         });
+
+        // ============ HEADER AUTO-COLLAPSE ============
+        let headerCollapseTimer = null;
+        const header = document.getElementById('header');
+
+        function collapseHeader() {
+            header.classList.add('collapsed');
+        }
+
+        function expandHeader() {
+            header.classList.remove('collapsed');
+            resetHeaderTimer();
+        }
+
+        function resetHeaderTimer() {
+            if (headerCollapseTimer) clearTimeout(headerCollapseTimer);
+            headerCollapseTimer = setTimeout(collapseHeader, 3000);
+        }
+
+        function handleHeaderClick(event) {
+            if (header.classList.contains('collapsed')) {
+                // Replié -> on déplie
+                expandHeader();
+                event.stopPropagation();
+            } else {
+                // Déplié -> zoom sur route
+                zoomToFullRoute();
+            }
+        }
+
+        // Démarrer le timer au chargement
+        resetHeaderTimer();
 
         // ============ ZOOM SUR ITINERAIRE COMPLET ============
         function zoomToFullRoute() {
