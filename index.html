@@ -1323,13 +1323,14 @@
             /* Body - prend tout l'espace restant */
             .day-card-body {
                 flex: 1;
+                height: 0;
                 min-height: 0;
                 max-height: none !important;
                 padding: 8px 10px;
                 overflow-y: auto;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto 1fr 1fr;
+                grid-template-rows: auto auto auto auto;  /* ← Changé : toutes les lignes en auto */
                 gap: 6px;
             }
 
