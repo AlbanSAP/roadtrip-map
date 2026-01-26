@@ -251,48 +251,64 @@
         }
 
         /* Controles taille texte */
-        .text-size-controls {
+        /* Bouton plein écran seul en haut à droite */
+        .fullscreen-control {
             position: fixed;
             top: 15px;
             right: 15px;
             z-index: 1000;
+        }
+
+        /* Slider taille texte - discret en bas à droite */
+        .text-slider-control {
+            position: fixed;
+            bottom: 95px;
+            right: 15px;
+            z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 4px;
-            background: rgba(255,255,255,0.95);
-            padding: 5px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            gap: 6px;
+            background: rgba(255,255,255,0.9);
+            padding: 6px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            backdrop-filter: blur(8px);
         }
-        .text-size-btn, .control-btn {
-            width: 32px;
-            height: 32px;
-            border: none;
-            border-radius: 8px;
-            background: #f5f5f5;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .text-size-btn:active, .control-btn:active { background: #e0e0e0; }
-        .control-btn.active { background: #1565c0; color: white; }
-        .control-divider {
-            width: 1px;
-            height: 20px;
-            background: #ddd;
-            margin: 0 2px;
-        }
-        .text-size-label {
-            display: flex;
-            align-items: center;
-            padding: 0 8px;
-            font-size: 0.75em;
+        .text-slider-icon {
+            font-size: 14px;
             color: #666;
+            font-weight: bold;
+        }
+        .text-slider-icon.small { font-size: 11px; }
+        .text-slider-icon.large { font-size: 17px; }
+        .text-slider {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #ddd;
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+        .text-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #1565c0;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+        .text-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #1565c0;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
         }
 
         /* Bouton recentrer */
@@ -315,21 +331,23 @@
         }
         .btn-recenter:active { background: #f0f0f0; }
 
-        /* Bouton plein ecran (dans la barre de controles) */
+        /* Bouton plein ecran */
         .btn-fullscreen {
-            background: #f5f5f5;
+            background: rgba(255,255,255,0.9);
             border: none;
-            border-radius: 8px;
-            width: 32px;
-            height: 32px;
-            font-size: 1.1em;
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2em;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            backdrop-filter: blur(8px);
             -webkit-tap-highlight-color: transparent;
         }
-        .btn-fullscreen:active { background: #e0e0e0; }
+        .btn-fullscreen:active { background: rgba(230,230,230,0.95); }
         .btn-fullscreen.active {
             background: #1565c0;
             color: white;
@@ -1015,20 +1033,20 @@
             .stat:nth-child(n+3) { display: none; }
 
             /* === BOUTON PLEIN ECRAN === */
-            /* Barre de controles mobile - juste plein écran */
-            .text-size-controls {
-                top: 8px;
+            /* Controles mobile */
+            .fullscreen-control { top: 8px; right: 8px; }
+            .btn-fullscreen { width: 36px; height: 36px; font-size: 16px; }
+
+            .text-slider-control {
+                bottom: 85px;
                 right: 8px;
-                padding: 4px;
+                padding: 5px 8px;
+                gap: 5px;
             }
-            .text-size-btn, .text-size-label, .control-divider {
-                display: none;
-            }
-            .btn-fullscreen {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
+            .text-slider { width: 60px; }
+            .text-slider-icon { font-size: 12px; }
+            .text-slider-icon.small { font-size: 10px; }
+            .text-slider-icon.large { font-size: 14px; }
 
             /* === LEGENDE COMPACTE === */
             .legend {
@@ -1228,20 +1246,23 @@
             .stat { font-size: 9px; }
             .stat:nth-child(n+2) { display: none; }
 
-            /* Barre controles paysage - juste plein écran */
-            .text-size-controls {
-                top: 5px;
+            /* Controles paysage */
+            .fullscreen-control { top: 5px; right: 5px; }
+            .btn-fullscreen { width: 30px; height: 30px; font-size: 14px; border-radius: 8px; }
+
+            .text-slider-control {
+                bottom: 50px;
                 right: 5px;
-                padding: 3px;
+                padding: 3px 6px;
+                gap: 4px;
+                border-radius: 15px;
             }
-            .text-size-btn, .text-size-label, .control-divider {
-                display: none;
-            }
-            .btn-fullscreen {
-                width: 28px;
-                height: 28px;
-                font-size: 12px;
-            }
+            .text-slider { width: 50px; height: 3px; }
+            .text-slider::-webkit-slider-thumb { width: 12px; height: 12px; }
+            .text-slider::-moz-range-thumb { width: 12px; height: 12px; }
+            .text-slider-icon { font-size: 10px; }
+            .text-slider-icon.small { font-size: 8px; }
+            .text-slider-icon.large { font-size: 12px; }
 
             .legend { bottom: 55px; max-width: 110px; font-size: 9px; }
             .legend-header { padding: 4px 8px; font-size: 10px; }
@@ -1417,13 +1438,16 @@
 
     <div id="map"></div>
 
-    <!-- Barre de controles (texte + plein écran) -->
-    <div class="text-size-controls" id="controls-bar">
-        <button class="text-size-btn" onclick="changeTextSize(-1)" title="Reduire texte">A-</button>
-        <span class="text-size-label" id="text-size-label">100%</span>
-        <button class="text-size-btn" onclick="changeTextSize(1)" title="Agrandir texte">A+</button>
-        <div class="control-divider"></div>
+    <!-- Bouton plein écran -->
+    <div class="fullscreen-control">
         <button class="btn-fullscreen" id="btn-fullscreen" onclick="toggleFullscreen()" title="Mode plein ecran">⛶</button>
+    </div>
+
+    <!-- Slider taille texte -->
+    <div class="text-slider-control" id="text-slider-control">
+        <span class="text-slider-icon small">A</span>
+        <input type="range" class="text-slider" id="text-slider" min="80" max="130" value="100" oninput="setTextSize(this.value)">
+        <span class="text-slider-icon large">A</span>
     </div>
 
     <div class="legend" id="legend">
@@ -2662,35 +2686,27 @@
         }
 
         // ============ TAILLE DU TEXTE ============
-        const TEXT_SIZES = [80, 90, 100, 110, 120, 130];
-        let currentSizeIndex = TEXT_SIZES.indexOf(100); // Par defaut 100%
+        let currentTextSize = 100;
 
         // Charger la preference sauvegardee
         const savedSize = localStorage.getItem('roadtrip-text-size');
         if (savedSize) {
-            const idx = TEXT_SIZES.indexOf(parseInt(savedSize));
-            if (idx !== -1) {
-                currentSizeIndex = idx;
-                applyTextSize();
-            }
+            currentTextSize = parseInt(savedSize);
+            document.getElementById('text-slider').value = currentTextSize;
+            applyTextSize();
         }
 
-        function changeTextSize(direction) {
-            const newIndex = currentSizeIndex + direction;
-            if (newIndex >= 0 && newIndex < TEXT_SIZES.length) {
-                currentSizeIndex = newIndex;
-                applyTextSize();
-                // Sauvegarder la preference
-                localStorage.setItem('roadtrip-text-size', TEXT_SIZES[currentSizeIndex]);
-            }
+        function setTextSize(value) {
+            currentTextSize = parseInt(value);
+            applyTextSize();
+            localStorage.setItem('roadtrip-text-size', currentTextSize);
         }
 
         function applyTextSize() {
-            const size = TEXT_SIZES[currentSizeIndex];
-            const baseSize = 16 * size / 100; // 16px = taille de base du navigateur
+            const size = currentTextSize;
+            const baseSize = 16 * size / 100;
 
             document.documentElement.style.fontSize = size + '%';
-            document.getElementById('text-size-label').textContent = size + '%';
 
             // Appliquer aussi aux popups Leaflet et autres elements
             const style = document.getElementById('dynamic-text-size') || document.createElement('style');
