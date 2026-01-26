@@ -1284,7 +1284,7 @@
             .day-city { display: none; }
             .day-icon { font-size: 10px; margin-bottom: 1px; }
 
-            /* Carte du jour en paysage - MAXIMUM */
+            /* Carte du jour en paysage - PLEIN ECRAN */
             .day-card-overlay {
                 justify-content: center;
                 align-items: center;
@@ -1293,7 +1293,8 @@
             .day-card {
                 width: 90vw;
                 max-width: 650px;
-                height: calc(100vh - 40px);
+                height: calc(100vh - 40px) !important;
+                max-height: calc(100vh - 40px) !important;
                 border-radius: 8px;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.25);
                 display: flex;
