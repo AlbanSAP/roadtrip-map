@@ -1284,7 +1284,7 @@
             .day-city { display: none; }
             .day-icon { font-size: 10px; margin-bottom: 1px; }
 
-            /* Carte du jour en paysage - taille au contenu */
+            /* Carte du jour en paysage - scrollable */
             .day-card-overlay {
                 justify-content: center;
                 align-items: center;
@@ -1293,17 +1293,19 @@
             .day-card {
                 width: 80vw;
                 max-width: 550px;
-                /* PAS de height fixe - s'adapte au contenu */
                 max-height: calc(100vh - 55px);
                 border-radius: 8px;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+                display: flex;
+                flex-direction: column;
                 overflow: hidden;
             }
 
-            /* Header compact */
+            /* Header compact - fixe en haut */
             .day-card-header {
                 padding: 4px 10px;
                 border-bottom: 1px solid #eee;
+                flex-shrink: 0;
             }
             .day-card-close {
                 width: 20px;
@@ -1316,11 +1318,11 @@
             .day-card-date { font-size: 11px; margin: 0; }
             .day-card-type { font-size: 7px; padding: 1px 4px; }
 
-            /* Body - PAS de flex, taille au contenu */
+            /* Body - scrollable, prend l'espace restant */
             .day-card-body {
                 padding: 4px 8px;
                 overflow-y: auto;
-                max-height: calc(100vh - 130px);
+                flex: 1;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 4px;
@@ -1377,11 +1379,12 @@
             .day-card-rv-name { font-size: 8px; }
 
             /* Navigation - collée au contenu */
+            /* Nav - fixe en bas */
             .day-card-nav {
                 padding: 4px 8px;
                 gap: 4px;
                 border-top: 1px solid #eee;
-                margin-top: 0;
+                flex-shrink: 0;
             }
             .day-card-nav-btn, .day-card-zoom {
                 padding: 4px 8px;
