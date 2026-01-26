@@ -1284,7 +1284,7 @@
             .day-city { display: none; }
             .day-icon { font-size: 10px; margin-bottom: 1px; }
 
-            /* ============ CARTE DU JOUR EN PAYSAGE - CORRIGÉ ============ */
+            /* ============ CARTE DU JOUR EN PAYSAGE ============ */
             .day-card-overlay {
                 justify-content: center;
                 align-items: center;
@@ -1328,19 +1328,19 @@
                 overflow-y: auto;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto 1fr;
+                grid-auto-rows: auto;
                 gap: 6px;
                 align-content: stretch;
             }
 
-            /* Météo - pleine largeur, première ligne */
+            /* Météo - pleine largeur */
             .day-card-weather {
                 grid-column: 1 / -1;
-                grid-row: 1;
                 padding: 8px 10px;
                 gap: 10px;
                 margin: 0;
                 border-radius: 8px;
+                align-self: start;
             }
             .weather-icon { font-size: 32px; width: 40px; }
             .weather-temp-big { font-size: 18px; }
@@ -1348,20 +1348,20 @@
             .weather-details { font-size: 10px; gap: 8px; }
             .weather-live-badge { font-size: 8px; padding: 2px 5px; top: 4px; right: 6px; }
 
-            /* Route - pleine largeur, deuxième ligne */
+            /* Route - pleine largeur */
             .day-card-route {
                 grid-column: 1 / -1;
-                grid-row: 2;
                 padding: 8px 10px;
                 gap: 8px;
                 border-radius: 8px;
                 margin: 0;
+                align-self: start;
             }
             .day-card-route-icon { font-size: 16px; }
             .day-card-route-cities { font-size: 12px; }
             .day-card-route-stats { font-size: 10px; }
 
-            /* Sections Matin/Aprem/Soir/RV - grille 2 colonnes */
+            /* Sections Matin/Aprem/Soir/RV - s'étirent pour remplir */
             .day-card-section {
                 margin: 0;
                 background: #f8f9fa;
@@ -1369,21 +1369,20 @@
                 padding: 8px;
                 display: flex;
                 flex-direction: column;
+                align-self: stretch;
+                min-height: 60px;
             }
 
-            .day-card-section.matin { grid-column: 1; grid-row: 3; }
-            .day-card-section.aprem { grid-column: 2; grid-row: 3; }
-            .day-card-section.soir { grid-column: 1; grid-row: 4; }
             #dc-rv-section {
-                grid-column: 2;
-                grid-row: 4;
                 background: #fff8e1;
             }
 
             .day-card-section-title {
                 font-size: 10px;
                 margin-bottom: 4px;
+                flex-shrink: 0;
             }
+
             .day-card-section ul {
                 font-size: 11px;
                 line-height: 1.4;
@@ -1404,6 +1403,7 @@
             /* Navigation - fixe en bas */
             .day-card-nav {
                 flex-shrink: 0;
+                margin-top: auto;
                 padding: 8px 12px;
                 gap: 8px;
                 border-top: 1px solid #eee;
