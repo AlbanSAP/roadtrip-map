@@ -1295,7 +1295,7 @@
                 width: 90vw;
                 max-width: 700px;
                 height: calc(100vh - 20px);
-                max-height: none;
+                max-height: none !important;
                 border-radius: 12px;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.25);
                 display: flex;
@@ -1322,8 +1322,10 @@
 
             /* Body - prend tout l'espace restant */
             .day-card-body {
-                flex: 1;
+                flex: 1 1 auto;
                 min-height: 0;
+                max-height: none !important;
+                height: auto !important;
                 padding: 8px 10px;
                 overflow-y: auto;
                 display: grid;
@@ -1368,6 +1370,7 @@
                 padding: 8px;
                 display: flex;
                 flex-direction: column;
+                min-height: 0;
             }
 
             .day-card-section.matin {
@@ -1403,6 +1406,7 @@
                 padding-left: 14px;
                 margin: 0;
                 flex: 1;
+                overflow-y: auto;
             }
             .day-card-section ul li { margin-bottom: 2px; }
 
@@ -1417,7 +1421,6 @@
             /* Navigation - fixe en bas */
             .day-card-nav {
                 flex-shrink: 0;
-                margin-top: auto;
                 padding: 8px 12px;
                 gap: 8px;
                 border-top: 1px solid #eee;
