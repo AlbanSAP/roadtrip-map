@@ -1301,10 +1301,11 @@
                 flex-direction: column;
             }
 
-            /* Header */
+            /* Header - taille FIXE */
             .day-card-header {
                 padding: 6px 12px;
                 border-bottom: 1px solid #eee;
+                flex: 0 0 auto !important;
             }
             .day-card-close {
                 width: 22px;
@@ -1317,11 +1318,11 @@
             .day-card-date { font-size: 12px; margin: 0; }
             .day-card-type { font-size: 8px; padding: 2px 5px; }
 
-            /* Body - scroll interne */
+            /* Body - prend TOUT l'espace restant, scroll interne */
             .day-card-body {
                 padding: 6px 10px;
                 overflow-y: auto;
-                flex: 1;
+                flex: 1 1 0 !important;
                 min-height: 0;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -1379,11 +1380,12 @@
             .day-card-rv-name { font-size: 10px; }
 
             /* Navigation - collée au contenu */
-            /* Nav - collée en bas */
+            /* Nav - taille FIXE, collée en bas */
             .day-card-nav {
                 padding: 6px 10px;
                 gap: 6px;
                 border-top: 1px solid #eee;
+                flex: 0 0 auto !important;
             }
             .day-card-nav-btn, .day-card-zoom {
                 padding: 5px 10px;
