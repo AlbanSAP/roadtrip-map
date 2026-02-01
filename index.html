@@ -384,212 +384,88 @@
 
         /* Stop popup - Fiche d'identité ville */
         .stop-popup {
-            min-width: 320px;
-            max-width: 380px;
+            width: 320px;
+            max-width: 320px;
+            box-sizing: border-box;
         }
         .stop-popup .ville-header {
             text-align: center;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
             border-bottom: 2px solid #e0e0e0;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .stop-popup .ville-emoji {
-            font-size: 2.5em;
+            font-size: 2em;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .stop-popup .ville-nom {
             margin: 0;
-            font-size: 1.3em;
+            font-size: 1.1em;
             color: #1a1a1a;
             font-weight: 700;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         .stop-popup .ville-surnom {
             font-style: italic;
             color: #666;
-            font-size: 1em;
-            margin-top: 4px;
+            font-size: 0.9em;
+            margin-top: 3px;
         }
         .stop-popup .ville-description {
-            font-size: 0.92em;
-            line-height: 1.6;
+            font-size: 0.85em;
+            line-height: 1.5;
             color: #333;
-            text-align: justify;
-            margin: 12px 0;
-            max-height: 200px;
+            text-align: left;
+            margin: 10px 0;
+            max-height: 150px;
             overflow-y: auto;
-            padding-right: 5px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
-        .stop-popup .ville-description::-webkit-scrollbar {
-            width: 6px;
+        .stop-popup .ville-description p {
+            margin: 0 0 8px 0;
         }
-        .stop-popup .ville-description::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
-        }
-        .stop-popup .ville-description::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
+        .stop-popup .ville-description p:last-child {
+            margin-bottom: 0;
         }
         .stop-popup .ville-meta {
             display: flex;
             justify-content: space-around;
-            padding-top: 12px;
+            padding-top: 10px;
             border-top: 1px solid #e0e0e0;
-            margin-top: 12px;
+            margin-top: 10px;
         }
         .stop-popup .ville-meta-item {
             text-align: center;
+            flex: 1;
         }
         .stop-popup .ville-meta-icon {
-            font-size: 1.2em;
+            font-size: 1.1em;
             display: block;
         }
         .stop-popup .ville-meta-value {
-            font-size: 0.85em;
+            font-size: 0.75em;
             color: #555;
             margin-top: 2px;
+            word-wrap: break-word;
         }
         .stop-popup .timezone-change {
-            margin-top: 10px;
-            padding: 8px 10px;
+            margin-top: 8px;
+            padding: 6px 8px;
             background: #fff3e0;
-            border-radius: 8px;
-            font-size: 0.85em;
+            border-radius: 6px;
+            font-size: 0.78em;
             color: #e65100;
             text-align: center;
         }
-
-        /* === STOP POPUP RESPONSIVE === */
-        /* Tablette paysage */
-        @media (max-width: 1024px) {
-            .stop-popup {
-                min-width: 280px;
-                max-width: 320px;
-            }
-            .stop-popup .ville-emoji { font-size: 2em; }
-            .stop-popup .ville-nom { font-size: 1.15em; }
-            .stop-popup .ville-description {
-                max-height: 150px;
-                font-size: 0.88em;
-            }
-        }
-
-        /* Tablette portrait / Mobile paysage */
-        @media (max-width: 768px) {
-            .leaflet-popup-content {
-                margin: 8px 10px !important;
-            }
-            .stop-popup {
-                min-width: 240px;
-                max-width: 280px;
-            }
-            .stop-popup .ville-header {
-                padding-bottom: 8px;
-                margin-bottom: 8px;
-            }
-            .stop-popup .ville-emoji {
-                font-size: 1.8em;
-                margin-bottom: 5px;
-            }
-            .stop-popup .ville-nom {
-                font-size: 1.05em;
-            }
-            .stop-popup .ville-surnom {
-                font-size: 0.85em;
-            }
-            .stop-popup .ville-description {
-                max-height: 120px;
-                font-size: 0.82em;
-                line-height: 1.5;
-                margin: 8px 0;
-                text-align: left;
-            }
-            .stop-popup .ville-meta {
-                padding-top: 8px;
-                margin-top: 8px;
-                gap: 5px;
-            }
-            .stop-popup .ville-meta-icon { font-size: 1em; }
-            .stop-popup .ville-meta-value { font-size: 0.75em; }
-            .stop-popup .timezone-change {
-                padding: 6px 8px;
-                font-size: 0.78em;
-                margin-top: 8px;
-            }
-            .stop-popup .btn-navigate {
-                padding: 8px 12px !important;
-                font-size: 0.82em !important;
-            }
-        }
-
-        /* Mobile portrait */
-        @media (max-width: 480px) {
-            .leaflet-popup-content {
-                margin: 6px 8px !important;
-            }
-            .stop-popup {
-                min-width: 200px;
-                max-width: 250px;
-            }
-            .stop-popup .ville-header {
-                padding-bottom: 6px;
-                margin-bottom: 6px;
-                border-bottom-width: 1px;
-            }
-            .stop-popup .ville-emoji {
-                font-size: 1.5em;
-                margin-bottom: 4px;
-            }
-            .stop-popup .ville-nom {
-                font-size: 0.95em;
-            }
-            .stop-popup .ville-surnom {
-                font-size: 0.8em;
-                margin-top: 2px;
-            }
-            .stop-popup .ville-description {
-                max-height: 100px;
-                font-size: 0.78em;
-                line-height: 1.45;
-                margin: 6px 0;
-            }
-            .stop-popup .ville-meta {
-                padding-top: 6px;
-                margin-top: 6px;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .stop-popup .ville-meta-item {
-                flex: 1 1 30%;
-                min-width: 60px;
-            }
-            .stop-popup .ville-meta-icon { font-size: 0.9em; }
-            .stop-popup .ville-meta-value { font-size: 0.7em; }
-            .stop-popup .timezone-change {
-                padding: 5px 6px;
-                font-size: 0.72em;
-                margin-top: 6px;
-            }
-            .stop-popup .btn-navigate {
-                padding: 6px 10px !important;
-                font-size: 0.75em !important;
-                margin-top: 8px !important;
-            }
-        }
-
-        /* Très petit écran */
-        @media (max-width: 360px) {
-            .stop-popup {
-                min-width: 180px;
-                max-width: 220px;
-            }
-            .stop-popup .ville-emoji { font-size: 1.3em; }
-            .stop-popup .ville-nom { font-size: 0.88em; }
-            .stop-popup .ville-description {
-                max-height: 80px;
-                font-size: 0.72em;
-            }
+        .stop-popup .btn-navigate {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85em !important;
+            padding: 8px 12px !important;
         }
 
         .segment-popup { min-width: 260px; }
@@ -1388,7 +1264,8 @@
             /* === POPUPS POI === */
             .leaflet-popup-content {
                 max-width: 250px !important;
-                min-width: 200px !important;
+                min-width: 180px !important;
+                margin: 8px !important;
             }
             .leaflet-popup-content-wrapper { padding: 8px; }
             .poi-popup h4 { font-size: 14px; margin-bottom: 6px; }
@@ -1396,6 +1273,50 @@
             .poi-details { font-size: 11px; }
             .poi-tips { font-size: 11px; }
             .poi-tips li { margin-bottom: 3px; }
+
+            /* === POPUPS VILLES (STOPS) === */
+            .stop-popup {
+                width: auto !important;
+                min-width: 0 !important;
+                max-width: 230px !important;
+            }
+            .stop-popup .ville-header {
+                padding-bottom: 6px;
+                margin-bottom: 6px;
+                border-bottom-width: 1px;
+            }
+            .stop-popup .ville-emoji {
+                font-size: 1.5em;
+                margin-bottom: 4px;
+            }
+            .stop-popup .ville-nom {
+                font-size: 0.95em;
+            }
+            .stop-popup .ville-surnom {
+                font-size: 0.75em;
+            }
+            .stop-popup .ville-description {
+                max-height: 80px;
+                font-size: 0.75em;
+                line-height: 1.4;
+                margin: 6px 0;
+            }
+            .stop-popup .ville-meta {
+                padding-top: 6px;
+                margin-top: 6px;
+            }
+            .stop-popup .ville-meta-icon { font-size: 0.9em; }
+            .stop-popup .ville-meta-value { font-size: 0.65em; }
+            .stop-popup .timezone-change {
+                font-size: 0.7em;
+                padding: 4px 6px;
+                margin-top: 6px;
+            }
+            .stop-popup .btn-navigate {
+                font-size: 0.75em !important;
+                padding: 6px 10px !important;
+                margin-top: 6px !important;
+            }
         }
 
         /* === MODE PORTRAIT MOBILE - FORCE CENTRAGE === */
@@ -1610,6 +1531,30 @@
                 border-radius: 6px;
             }
             .swipe-hint { display: none; }
+
+            /* === POPUPS VILLES EN PAYSAGE === */
+            .leaflet-popup-content {
+                max-width: 220px !important;
+                margin: 6px !important;
+            }
+            .stop-popup {
+                width: auto !important;
+                max-width: 200px !important;
+            }
+            .stop-popup .ville-emoji { font-size: 1.3em; margin-bottom: 3px; }
+            .stop-popup .ville-nom { font-size: 0.85em; }
+            .stop-popup .ville-surnom { font-size: 0.7em; }
+            .stop-popup .ville-description {
+                max-height: 60px;
+                font-size: 0.7em;
+                line-height: 1.35;
+                margin: 4px 0;
+            }
+            .stop-popup .ville-meta { padding-top: 4px; margin-top: 4px; }
+            .stop-popup .ville-meta-icon { font-size: 0.8em; }
+            .stop-popup .ville-meta-value { font-size: 0.6em; }
+            .stop-popup .timezone-change { font-size: 0.65em; padding: 3px 5px; margin-top: 4px; }
+            .stop-popup .btn-navigate { font-size: 0.7em !important; padding: 5px 8px !important; margin-top: 4px !important; }
         }
 
         /* === TRÈS PETIT ÉCRAN (iPhone SE, etc) === */
@@ -1632,6 +1577,15 @@
             .day-card-body { max-height: calc(70vh - 90px); }
 
             .weather-icon { font-size: 28px; width: 35px; }
+
+            /* Popup ville très compact */
+            .leaflet-popup-content { max-width: 180px !important; margin: 5px !important; }
+            .stop-popup { max-width: 160px !important; }
+            .stop-popup .ville-emoji { font-size: 1.2em; }
+            .stop-popup .ville-nom { font-size: 0.8em; }
+            .stop-popup .ville-surnom { display: none; }
+            .stop-popup .ville-description { max-height: 50px; font-size: 0.68em; }
+            .stop-popup .ville-meta-value { font-size: 0.58em; }
         }
     </style>
 </head>
@@ -2032,7 +1986,12 @@
             });
 
             const marker = L.marker(stop.coords, { icon: icon, zIndexOffset: 1000 })  // zIndex plus haut
-                .bindPopup(createStopPopup(stop))
+                .bindPopup(createStopPopup(stop), {
+                    maxWidth: window.innerWidth < 500 ? 250 : 350,
+                    minWidth: window.innerWidth < 500 ? 180 : 280,
+                    autoPan: true,
+                    autoPanPadding: [20, 20]
+                })
                 .addTo(stopsLayer);
 
             // Lier le marqueur au planning
