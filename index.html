@@ -1319,8 +1319,8 @@
             }
         }
 
-        /* === MODE PORTRAIT MOBILE - FORCE CENTRAGE === */
-        @media (max-width: 768px) and (orientation: portrait) {
+        /* === MODE PORTRAIT (MOBILE + TABLETTE) === */
+        @media (orientation: portrait) {
             .day-card-overlay {
                 justify-content: center !important;
                 align-items: flex-end !important;
@@ -1332,32 +1332,39 @@
                 border-radius: 16px 16px 0 0 !important;
             }
 
-            /* Popups villes - plus hautes en portrait mobile */
+            /* POPUP VILLE - GRANDE EN PORTRAIT (beaucoup de hauteur dispo) */
+            .leaflet-popup-content {
+                max-width: 90vw !important;
+                margin: 10px !important;
+            }
             .stop-popup {
-                max-width: min(85vw, 320px) !important;
+                width: 85vw !important;
+                max-width: 400px !important;
+            }
+            .stop-popup .ville-emoji { font-size: 2.5em; margin-bottom: 10px; }
+            .stop-popup .ville-nom { font-size: 1.2em; }
+            .stop-popup .ville-surnom { font-size: 0.95em; }
+            .stop-popup .ville-header {
+                padding-bottom: 12px;
+                margin-bottom: 12px;
             }
             .stop-popup .ville-description {
-                max-height: clamp(120px, 25vh, 200px);
-                font-size: 0.8em;
-                line-height: 1.5;
+                max-height: 40vh;
+                font-size: 0.9em;
+                line-height: 1.6;
+                margin: 12px 0;
             }
-            .stop-popup .ville-emoji { font-size: 1.8em; }
-            .stop-popup .ville-nom { font-size: 1em; }
-            .stop-popup .ville-surnom { font-size: 0.85em; }
-        }
-
-        /* === MODE PORTRAIT TABLETTE === */
-        @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
-            .stop-popup {
-                max-width: min(70vw, 380px) !important;
+            .stop-popup .ville-meta {
+                padding-top: 12px;
+                margin-top: 12px;
             }
-            .stop-popup .ville-description {
-                max-height: clamp(150px, 30vh, 280px);
-                font-size: 0.88em;
-                line-height: 1.55;
+            .stop-popup .ville-meta-icon { font-size: 1.3em; }
+            .stop-popup .ville-meta-value { font-size: 0.85em; }
+            .stop-popup .btn-navigate {
+                font-size: 0.9em !important;
+                padding: 10px 16px !important;
+                margin-top: 12px !important;
             }
-            .stop-popup .ville-emoji { font-size: 2.2em; }
-            .stop-popup .ville-nom { font-size: 1.15em; }
         }
 
         /* === MODE PAYSAGE MOBILE === */
@@ -1559,28 +1566,41 @@
             }
             .swipe-hint { display: none; }
 
-            /* === POPUPS VILLES EN PAYSAGE === */
+            /* === POPUPS VILLES EN PAYSAGE - LARGE (beaucoup d'espace horizontal) === */
             .leaflet-popup-content {
-                max-width: 270px !important;
-                margin: 6px !important;
+                max-width: 60vw !important;
+                margin: 8px !important;
             }
             .stop-popup {
-                width: auto !important;
-                max-width: 250px !important;
+                width: 55vw !important;
+                max-width: 500px !important;
             }
-            .stop-popup .ville-emoji { font-size: 1.3em; margin-bottom: 3px; }
-            .stop-popup .ville-nom { font-size: 0.85em; }
-            .stop-popup .ville-surnom { font-size: 0.7em; }
+            .stop-popup .ville-header {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                text-align: left;
+                padding-bottom: 8px;
+                margin-bottom: 8px;
+            }
+            .stop-popup .ville-emoji { font-size: 2em; margin-bottom: 0; }
+            .stop-popup .ville-nom { font-size: 1em; }
+            .stop-popup .ville-surnom { font-size: 0.8em; }
             .stop-popup .ville-description {
-                max-height: 60px;
-                font-size: 0.7em;
-                line-height: 1.35;
-                margin: 4px 0;
+                max-height: 25vh;
+                font-size: 0.82em;
+                line-height: 1.45;
+                margin: 8px 0;
             }
-            .stop-popup .ville-meta { padding-top: 4px; margin-top: 4px; }
-            .stop-popup .ville-meta-icon { font-size: 0.8em; }
-            .stop-popup .ville-meta-value { font-size: 0.6em; }
-            .stop-popup .timezone-change { font-size: 0.65em; padding: 3px 5px; margin-top: 4px; }
+            .stop-popup .ville-meta {
+                padding-top: 8px;
+                margin-top: 8px;
+                justify-content: flex-start;
+                gap: 20px;
+            }
+            .stop-popup .ville-meta-icon { font-size: 1em; }
+            .stop-popup .ville-meta-value { font-size: 0.75em; }
+            .stop-popup .timezone-change { font-size: 0.75em; padding: 5px 8px; margin-top: 6px; }
             .stop-popup .btn-navigate { font-size: 0.7em !important; padding: 5px 8px !important; margin-top: 4px !important; }
         }
 
@@ -2014,10 +2034,10 @@
 
             const marker = L.marker(stop.coords, { icon: icon, zIndexOffset: 1000 })  // zIndex plus haut
                 .bindPopup(createStopPopup(stop), {
-                    maxWidth: window.innerWidth < 500 ? 300 : 400,
-                    minWidth: window.innerWidth < 500 ? 220 : 320,
+                    maxWidth: window.innerWidth > window.innerHeight ? 600 : 450,
+                    minWidth: window.innerWidth > window.innerHeight ? 400 : 280,
                     autoPan: true,
-                    autoPanPadding: [20, 20]
+                    autoPanPadding: [30, 30]
                 })
                 .addTo(stopsLayer);
 
