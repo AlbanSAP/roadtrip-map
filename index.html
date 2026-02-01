@@ -1834,10 +1834,7 @@
 
             // Description (remplace les sauts de ligne par <br>)
             if (description) {
-                const descFormatted = description.replace(/
-
-/g, '</p><p>').replace(/
-/g, ' ');
+                const descFormatted = description.replace(/\n\n/g, '</p><p>').replace(/\n/g, ' ');
                 html += `<div class="ville-description"><p>${descFormatted}</p></div>`;
             }
 
