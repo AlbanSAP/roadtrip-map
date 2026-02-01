@@ -419,7 +419,7 @@
             color: #333;
             text-align: left;
             margin: 10px 0;
-            max-height: 150px;
+            max-height: clamp(120px, 20vh, 200px);
             overflow-y: auto;
             word-wrap: break-word;
             overflow-wrap: break-word;
@@ -1331,6 +1331,33 @@
                 margin: 0 !important;
                 border-radius: 16px 16px 0 0 !important;
             }
+
+            /* Popups villes - plus hautes en portrait mobile */
+            .stop-popup {
+                max-width: min(85vw, 320px) !important;
+            }
+            .stop-popup .ville-description {
+                max-height: clamp(120px, 25vh, 200px);
+                font-size: 0.8em;
+                line-height: 1.5;
+            }
+            .stop-popup .ville-emoji { font-size: 1.8em; }
+            .stop-popup .ville-nom { font-size: 1em; }
+            .stop-popup .ville-surnom { font-size: 0.85em; }
+        }
+
+        /* === MODE PORTRAIT TABLETTE === */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+            .stop-popup {
+                max-width: min(70vw, 380px) !important;
+            }
+            .stop-popup .ville-description {
+                max-height: clamp(150px, 30vh, 280px);
+                font-size: 0.88em;
+                line-height: 1.55;
+            }
+            .stop-popup .ville-emoji { font-size: 2.2em; }
+            .stop-popup .ville-nom { font-size: 1.15em; }
         }
 
         /* === MODE PAYSAGE MOBILE === */
