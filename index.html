@@ -384,8 +384,8 @@
 
         /* Stop popup - Fiche d'identité ville */
         .stop-popup {
-            width: 320px;
-            max-width: 320px;
+            width: 360px;
+            max-width: 360px;
             box-sizing: border-box;
         }
         .stop-popup .ville-header {
@@ -1263,8 +1263,8 @@
 
             /* === POPUPS POI === */
             .leaflet-popup-content {
-                max-width: 250px !important;
-                min-width: 180px !important;
+                max-width: 300px !important;
+                min-width: 200px !important;
                 margin: 8px !important;
             }
             .leaflet-popup-content-wrapper { padding: 8px; }
@@ -1278,7 +1278,7 @@
             .stop-popup {
                 width: auto !important;
                 min-width: 0 !important;
-                max-width: 230px !important;
+                max-width: 280px !important;
             }
             .stop-popup .ville-header {
                 padding-bottom: 6px;
@@ -1534,12 +1534,12 @@
 
             /* === POPUPS VILLES EN PAYSAGE === */
             .leaflet-popup-content {
-                max-width: 220px !important;
+                max-width: 270px !important;
                 margin: 6px !important;
             }
             .stop-popup {
                 width: auto !important;
-                max-width: 200px !important;
+                max-width: 250px !important;
             }
             .stop-popup .ville-emoji { font-size: 1.3em; margin-bottom: 3px; }
             .stop-popup .ville-nom { font-size: 0.85em; }
@@ -1579,8 +1579,8 @@
             .weather-icon { font-size: 28px; width: 35px; }
 
             /* Popup ville très compact */
-            .leaflet-popup-content { max-width: 180px !important; margin: 5px !important; }
-            .stop-popup { max-width: 160px !important; }
+            .leaflet-popup-content { max-width: 220px !important; margin: 5px !important; }
+            .stop-popup { max-width: 200px !important; }
             .stop-popup .ville-emoji { font-size: 1.2em; }
             .stop-popup .ville-nom { font-size: 0.8em; }
             .stop-popup .ville-surnom { display: none; }
@@ -1987,8 +1987,8 @@
 
             const marker = L.marker(stop.coords, { icon: icon, zIndexOffset: 1000 })  // zIndex plus haut
                 .bindPopup(createStopPopup(stop), {
-                    maxWidth: window.innerWidth < 500 ? 250 : 350,
-                    minWidth: window.innerWidth < 500 ? 180 : 280,
+                    maxWidth: window.innerWidth < 500 ? 300 : 400,
+                    minWidth: window.innerWidth < 500 ? 220 : 320,
                     autoPan: true,
                     autoPanPadding: [20, 20]
                 })
