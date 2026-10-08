@@ -926,36 +926,6 @@
         .day-card-section.matin .day-card-section-title { color: #ff9800; }
         .day-card-section.aprem .day-card-section-title { color: #2196f3; }
         .day-card-section.soir .day-card-section-title { color: #673ab7; }
-
-        /* Timeline horaire (activites issues du classeur) */
-        .day-card-section ul.timeline {
-            padding-left: 0;
-            list-style: none;
-        }
-        .day-card-section ul.timeline li {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            margin-bottom: 3px;
-        }
-        .act-h {
-            flex: 0 0 auto;
-            min-width: 42px;
-            font-size: 0.82em;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-            color: #9aa0a6;
-        }
-        .day-card-section.matin ul.timeline .act-h { color: #ff9800; }
-        .day-card-section.aprem ul.timeline .act-h { color: #2196f3; }
-        .day-card-section.soir ul.timeline .act-h { color: #673ab7; }
-        .act-n { flex: 1 1 auto; min-width: 0; }
-        .act-d {
-            margin-left: 5px;
-            font-size: 0.75em;
-            color: #9aa0a6;
-            white-space: nowrap;
-        }
         .day-card-rv {
             display: flex;
             align-items: center;
@@ -2412,8 +2382,9 @@
                 }
             });
 
-            // Les activites viennent du classeur sous forme d'objets horodates.
-            // Les chaines simples restent acceptees pour ne rien casser.
+            // Puces simples sous Matin / Apres-midi / Soir : les vignettes sont
+            // trop etroites pour une colonne d'horaires. L'heure et la duree
+            // restent dans les donnees, seuls les conseils servent d'infobulle.
             function escHtml(v) {
                 return String(v).replace(/&/g, '&amp;')
                                 .replace(/</g, '&lt;')
@@ -2422,17 +2393,10 @@
 
             function renderActivite(a) {
                 if (typeof a === 'string') return '<li>' + escHtml(a) + '</li>';
-                const heure = a.heure
-                    ? '<span class="act-h">' + escHtml(a.heure) + '</span>'
-                    : '<span class="act-h"></span>';
-                const duree = a.duree
-                    ? '<span class="act-d">' + escHtml(a.duree) + '</span>'
-                    : '';
                 const infobulle = a.conseils
                     ? ' title="' + escHtml(a.conseils).replace(/"/g, '&quot;') + '"'
                     : '';
-                return '<li' + infobulle + '>' + heure
-                     + '<span class="act-n">' + escHtml(a.nom) + duree + '</span></li>';
+                return '<li' + infobulle + '>' + escHtml(a.nom) + '</li>';
             }
 
             function remplirSection(sectionId, listeId, activites) {
@@ -2443,9 +2407,6 @@
                     return;
                 }
                 section.style.display = 'block';
-                // Une timeline n'affiche pas de puces : l'heure tient ce role.
-                const horodate = activites.some(a => typeof a === 'object' && a.heure);
-                liste.classList.toggle('timeline', horodate);
                 liste.innerHTML = activites.map(renderActivite).join('');
             }
 
